@@ -39,7 +39,6 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ people, onSelect }) => {
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
