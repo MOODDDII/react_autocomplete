@@ -5,9 +5,10 @@ import { useDebounce } from 'use-debounce';
 interface AutocompleteProps {
   people: Person[];
   onSelect: (person: Person) => void;
+  onInputChange: () => void;
 }
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ people, onSelect }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ people, onSelect, onInputChange }) => {
   const [inputValue, setInputValue] = useState('');
   const [debouncedValue] = useDebounce(inputValue, 300);
   const [filteredPeople, setFilteredPeople] = useState<Person[]>(people);
@@ -47,6 +48,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ people, onSelect }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
     setIsOpen(true);
+    onInputChange();
   };
 
   const handleSuggestionClick = (person: Person) => {
